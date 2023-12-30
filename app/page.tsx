@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { Users, db } from "@/drizzle/schema";
+import { eq } from "drizzle-orm";
 
 const Home = () => {
   const { data: session } = useSession() as { data: any };

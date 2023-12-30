@@ -1,6 +1,6 @@
 {
-  "id": "4ceb5949-f637-4c96-ba6d-51818a8f8507",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "8eaa9032-ed81-483a-93e6-7178f68b7131",
+  "prevId": "4ceb5949-f637-4c96-ba6d-51818a8f8507",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -44,6 +44,12 @@
         },
         "movie_title": {
           "name": "movie_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "movie_img": {
+          "name": "movie_img",
           "type": "text",
           "primaryKey": false,
           "notNull": false

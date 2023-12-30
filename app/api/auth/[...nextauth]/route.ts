@@ -1,7 +1,8 @@
+import { Users, db } from "@/drizzle/schema";
+import { eq } from "drizzle-orm";
+
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
-import { sql } from "@vercel/postgres";
-import { Profile } from "next-auth";
 
 const handler = NextAuth({
   providers: [
@@ -10,33 +11,33 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
   ],
+
   callbacks: {
-    async signIn({
-      user,
-      account,
-      profile,
-    }: {
-      user: any;
-      account: any;
-      profile?: Profile;
-    }) {
-      if (profile && "sub" in profile && "name" in profile) {
-        const { sub: googleAccountId, name: username } = profile;
+    async signIn(params) {
+      const { profile } = params;
 
-        try {
-          if (!user) {
-            // User doesn't exist, create a new record
-            await sql`
-              INSERT INTO Users (google_account_id, username) 
-              VALUES (${googleAccountId}, ${username});
-            `;
+      try {
+        // Check if the user already exists in the Users table
+        if (profile && profile.email) {
+          const existingUser = await db
+            .select()
+            .from(Users)
+            .where(eq(Users.google_account_id, profile.email));
+
+          if (existingUser.length === 0) {
+            // If the user doesn't exist, add them to the Users table
+            await db.insert(Users).values({
+              username: profile.name,
+              google_account_id: profile.email,
+            });
           }
-        } catch (error) {
-          console.error("Error during user creation:", error);
         }
-      }
 
-      return true; // Return true to allow sign-in
+        return true;
+      } catch (error) {
+        console.error("Error during signIn callback:", error);
+        return false; // Handle the error as needed
+      }
     },
   },
 });

@@ -6,6 +6,6 @@ export default {
   out: "./drizzle/migrations",
   driver: "pg",
   dbCredentials: {
-    connectionString: process.env.DB_URL + "?sslmode=require",
+    connectionString: process.env.POSTGRES_URL + "?sslmode=require",
   },
 } satisfies Config;

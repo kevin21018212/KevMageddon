@@ -1,13 +1,11 @@
-import pg from "pg";
+import { Pool } from "pg";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { pgTable, serial, text, integer } from "drizzle-orm/pg-core";
 require("dotenv").config({ path: ".env.development.local" });
 
-const { Pool } = pg;
-
 const pool = new Pool({
-  connectionString: process.env.DB_URL + "?sslmode=require",
+  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 });
 
 export const db = drizzle(pool);
@@ -38,6 +36,7 @@ export const Events = pgTable("Events", {
 export const Movies = pgTable("Movies", {
   movie_id: serial("movie_id").primaryKey(),
   movie_title: text("movie_title"),
+  movie_imgurl: text("movie_imgurl"),
   // Add other movie-related fields as needed
 });
 
