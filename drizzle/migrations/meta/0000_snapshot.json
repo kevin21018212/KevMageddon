@@ -1,5 +1,5 @@
 {
-  "id": "4ceb5949-f637-4c96-ba6d-51818a8f8507",
+  "id": "c7488dcc-85b4-4d21-9265-85bfc3d8cab6",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -14,14 +14,38 @@
           "primaryKey": true,
           "notNull": true
         },
-        "week_start_date": {
-          "name": "week_start_date",
+        "event_time": {
+          "name": "event_time",
           "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "event_time": {
-          "name": "event_time",
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "url": {
+          "name": "url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "imagepath": {
+          "name": "imagepath",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "location": {
+          "name": "location",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "week": {
+          "name": "week",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -44,6 +68,18 @@
         },
         "movie_title": {
           "name": "movie_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "url": {
+          "name": "url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "week": {
+          "name": "week",
           "type": "text",
           "primaryKey": false,
           "notNull": false

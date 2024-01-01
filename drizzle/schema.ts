@@ -28,21 +28,24 @@ export const Users = pgTable("Users", {
 
 export const Events = pgTable("Events", {
   event_id: serial("event_id").primaryKey(),
-  week_start_date: text("week_start_date"),
   event_time: text("event_time"),
-  // Add other event-related fields as needed
+  description: text("description"), // Added description field
+  url: text("url"), // Added url field
+  imagepath: text("imagepath"), // Added imagepath field
+  location: text("location"), // Added location field
+  week: text("week"), // Added week field
 });
 
 export const Movies = pgTable("Movies", {
   movie_id: serial("movie_id").primaryKey(),
   movie_title: text("movie_title"),
-  movie_img: text("movie_img"),
-  // Add other movie-related fields as needed
+  url: text("url"), // Added url field
+  week: text("week"), // Added week field
 });
 
 export const Votes = pgTable("Votes", {
   vote_id: serial("vote_id").primaryKey(),
-  user_id: integer("user_id").references(() => Users.user_id), // Change the data type to integer
+  user_id: integer("user_id").references(() => Users.user_id),
   event_id: integer("event_id").references(() => Events.event_id),
   movie_id: integer("movie_id").references(() => Movies.movie_id),
   preferred_event_time: text("preferred_event_time"),

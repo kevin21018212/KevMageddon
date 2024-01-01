@@ -1,12 +1,18 @@
 CREATE TABLE IF NOT EXISTS "Events" (
 	"event_id" serial PRIMARY KEY NOT NULL,
-	"week_start_date" text,
-	"event_time" text
+	"event_time" text,
+	"description" text,
+	"url" text,
+	"imagepath" text,
+	"location" text,
+	"week" text
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "Movies" (
 	"movie_id" serial PRIMARY KEY NOT NULL,
-	"movie_title" text
+	"movie_title" text,
+	"url" text,
+	"week" text
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "Users" (
